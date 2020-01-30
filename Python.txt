@@ -1,0 +1,209 @@
+Python
+
+run - mstsc
+port number-13120
+ip address 182.73.59.123
+Administrator
+python4u#
+
+All examples
+https://github.com/nileshdevdas/pythonsiemens
+
+Use three double quotes for a multiline string.
+#-------------------------------------------------------------
+Python is an interpreter.
+"Eveything is a variable".
+Dynamically interpreted language.
+It is an interpreted language
+python datatypes don't have types.
+read eval print loop-repl
+No "null" in python.
+Keep everything in "Snake Case", with underscores.
+def abc //not good
+def a_b_c() //good
+var_a = 10 //good
+
+a = 20
+type(a)
+del a // to delete a. Needs to be deleted.
+
+a = {'a':'1' , 'b':2}
+type (a)//gives dict as type
+type(globals())
+type(myglobal())
+
+No public,private.
+__ indicates private method. Not used too much.
+
+datatypes:
+int
+float
+str
+bool
+None
+list-indexed collection, it is mutable.
+tuple-same as list, immutable.
+set
+dict
+
+Pypy
+pip install libraryname
+pip freeze//gives services currently installed
+pip install pyreadline //auto completion upon pressing tab
+libraries project based and tools project based.
+------------------------------------------------------
+example: everything is a variable:
+def a_b():
+  print("i like ab")
+
+def c_d():
+  print("i like cd")
+  
+a_b = c_d
+
+a_b() // prints i like cd
+-------------------------------------------------------
+
+names = () //tuple
+names = [] //list
+names = {} //set
+names = {'a':10} //dictionary
+-----------------------------------------------------------------------------
+Taking input:
+username = input("Enter username ")
+password = input("Enter Password ")
+print("You entered username {} and password {}".format(username,password))
+----------------------------------------------------------------------------------
+Exception handling has 3 parts:
+try:
+	the block of code wish to try.
+except:
+	this block will be executed only for an exception.
+finally:
+	this code will be executed regardless.
+
+There can be only 1 try block but many except blocks
+
+try:
+	1/1
+except:
+	pass
+	#print(ae)
+	
+except:
+	print("New Error")
+finally:
+	print("Done")
+Gives error saying except: must be the last statement as it catches all exceptions.
+#------------------------------------------------------------------------------
+
+Any file with an extension of py is a module file
+A module file can be imported in any other python file
+1. import file
+2. from file import <specfunction>
+etc.
+
+#--------------------------------------------------------------------------------
+a package is a specialized packaging in python.
+a module is a single file.
+a package is a collection of modules with a special file _init_.py
+this init file acts as an aggregator to aggregate the various dependency functions.
+
+1.create a folder
+	__init__.py
+	your.py files
+The above is a package but it does not expose the required functions from package.
+
+2.create say dbhelper.py
+3.function say check_db
+4.create another file say filehelper.py
+5.define a function in filehelper.py say check_file
+6.in your __init__.py
+	from .filehelper import *
+	from .dbhelper import *
+7. in any of your application outside the package
+	you can say
+	from helpers import *
+	import helpers
+
+	helper.xxxx
+
+#-----------------------------------------------------------------------------------------
+virtualenv
+
+#----------------------------------------------------------------------
+import requests
+from bs4 import BeautifulSoup
+request = requests.get("https://www.flipkart.com/samsung-galaxy-m30s-blue-64-gb/p/itmd5730f5bdb0b1")
+tree  = BeautifulSoup(request.text, features="lxml")
+result = tree.find("div", {"class":"_1vC4OE _3qQ9m1"})
+print(result.text)
+res = int ((result.text[1:]).replace(",","")) #converts string to int
+print(res)
+print(res-15000)
+
+use 
+request = requests.get("https://www.flipkart.com/samsung-galaxy-m30s-blue-64-gb/p/itmd5730f5bdb0b1" headers = {'user-agent':"Mozillaxxxxx"}
+to crawl amazon so it is fooled into thinking that crawler is mozilla and not labeled as a robot.
+#------------------------------------------------------------------------------
+Sending mail
+import smtplib
+
+mail = smtplib.SMTP("mail.vinsys.com",587)
+mail.starttls()
+mail.login("iot@vinsys.com", "Python4u#")
+subject = "welcome"//can be ommitted
+message = "Python training"//can be ommitted
+message = 'Subject: {}\n\n{}'.format(subject,message)//can be ommitted
+mail.sendmail("iot@vinsys.com","shyam.abhishek95@gmail.com",message)//just message here can be written
+mail.close()
+print("Success....")
+#------------------------------------------------------------------------------
+
+import sys
+import os
+import math
+import datetime
+
+#----------------------------------------------------------------------------------
+class Employee:
+	pass
+	def __init__(self): //superficial constructor
+		print(self)
+		print("I was initialized....")
+	def __del__(self)://superficial destructor
+		print("I am deleted")
+	def __str__(self): //calls the init and in init it prints the message "in python training"
+		return "In python  training"
+	
+emp = Employee()
+print(emp)
+
+#anything that is with self is termed as class-object method
+#anything without self is termed as static method.
+def calculate_tax(self)
+	print("Calculating tax...")
+#--------------------------------------------------------------------------------------
+#decorators or decorator functions
+def decofn(target):
+	def decologic():
+		print("Before method")
+		result = target() #invoking actual target method
+		print("After method")
+		return result #the proxy should not swallow any result
+	return decologic
+	
+@decofn
+def m1():
+	print("Inside calling method")
+	return 1000
+print(m1())
+
+@decofn
+def m2():
+	print("Inside second calling method")
+	return 1000
+print(m2())
+
+#aspect oriented programming
+#-------------------------------------------------------------------------------------	
